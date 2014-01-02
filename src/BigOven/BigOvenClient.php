@@ -36,15 +36,119 @@ class BigOvenClient extends Client
     }
 
     /**
-     * @param int $id
+     * @return \SimpleXMLElement
+     *
+     * @see http://api.bigoven.com/documentation/user-profile
+     */
+    public function getUserProfile()
+    {
+        return $this
+            ->get('/profile')
+            ->send()
+            ->xml()
+        ;
+    }
+
+    /**
+     * @param int $recipeId
      *
      * @return \SimpleXMLElement
      *
      * @see http://api.bigoven.com/documentation/recipes
      */
-    public function getRecipe($id)
+    public function getRecipe($recipeId)
     {
-        $variables = array('id' => $id);
-        return $this->get(array('/recipe/{id}', $variables))->send()->xml();
+        return $this
+            ->get(array('/recipe/{id}', array('id' => $recipeId)))
+            ->send()
+            ->xml()
+        ;
+    }
+
+    /**
+     * @param int $recipeId
+     *
+     * @return \SimpleXMLElement
+     *
+     * @see http://api.bigoven.com/documentation/recipe-images
+     */
+    public function getRecipeImages($recipeId)
+    {
+        $query = array(
+            'rid' => $recipeId
+        );
+
+        return $this
+            ->get('/images', array(), array('query' => $query))
+            ->send()
+            ->xml();
+    }
+
+    /**
+     * @param string $title
+     * @param array $options
+     *     - pg: Page number, starting with 1
+     *     - rpp: Number of results per page, defaults to 10, max of 50
+     *     - uid: BigOven user primary key (ID) being searched for
+     *
+     * @see http://api.bigoven.com/documentation/recipe-search-results
+     *
+     * @return \SimpleXMLElement
+     */
+    public function getRecipesByTitle($title, array $options = array())
+    {
+        $query = $options + array(
+            'title_kw' => $title,
+            'pg'       => 1,
+            'rpp'      => 10,
+        );
+
+        return $this
+            ->get('/recipes', array(), array('query' => $query))
+            ->send()
+            ->xml()
+        ;
+    }
+
+    /**
+     * @param string $title
+     * @param string $keyword
+     *     - pg: Page number, starting with 1
+     *     - rpp: Number of results per page, defaults to 10, max of 50
+     *     - uid: BigOven user primary key (ID) being searched for
+     *
+     * @see http://api.bigoven.com/documentation/recipe-search-results
+     *
+     * @return \SimpleXMLElement
+     */
+    public function getRecipesByKeyword($keyword, array $options = array())
+    {
+        $query = $options + array(
+            'any_kw'   => $keyword,
+            'pg'       => 1,
+            'rpp'      => 10,
+        );
+
+        return $this
+            ->get('/recipes', array(), array('query' => $query))
+            ->send()
+            ->xml()
+        ;
+    }
+
+    /**
+     * @param int $entryId
+     *
+     * @return \SimpleXMLElement
+     *
+     * @see http://api.bigoven.com/documentation/food-glossary
+     */
+    public function getGlossaryEntry($entryId)
+    {
+        return $this
+            ->get(array('/glossary/{id}', array('id' => $entryId)))
+            ->send()
+            ->xml()
+        ;
     }
 }
