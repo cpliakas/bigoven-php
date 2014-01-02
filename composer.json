@@ -1,7 +1,7 @@
 {
     "name": "cpliakas/bigoven-php",
     "type": "library",
-    "description": "A PHP client library for the BigOven API.",
+    "description": "A PHP client library for the BigOven API",
     "homepage": "https://github.com/cpliakas/bigoven-php",
     "license": "MIT",
     "authors": [
