@@ -95,7 +95,7 @@ class BigOvenClient extends Client
      *
      * @return \SimpleXMLElement
      */
-    public function getRecipesByTitle($title, array $options = array())
+    public function findRecipesByTitle($title, array $options = array())
     {
         $query = $options + array(
             'title_kw' => $title,
@@ -121,7 +121,7 @@ class BigOvenClient extends Client
      *
      * @return \SimpleXMLElement
      */
-    public function getRecipesByKeyword($keyword, array $options = array())
+    public function findRecipesByKeyword($keyword, array $options = array())
     {
         $query = $options + array(
             'any_kw'   => $keyword,

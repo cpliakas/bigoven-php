@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.pugx.org/cpliakas/bigoven-php/downloads.png)](https://packagist.org/packages/cpliakas/bigoven-php)
 [![Latest Stable Version](https://poser.pugx.org/cpliakas/bigoven-php/v/stable.png)](https://packagist.org/packages/cpliakas/bigoven-php)
 
-@todo
+A PHP client library for the [BigOven](http://www.bigoven.com/) API.
 
 ## Installation
 
@@ -25,4 +25,16 @@ for more detailed installation and usage instructions.
 
 ## Usage
 
-@todo
+```php
+
+require 'vendor/autoload.php';
+
+$bigOven = \BigOven\BigOvenClient::factory(array(
+    'api_key'  => 'my-api-key',
+    'username' => 'my-username',
+    'password' => 'my-password',
+));
+
+$recipes = bigOven->findRecipesByTitle('cheese');
+
+```
