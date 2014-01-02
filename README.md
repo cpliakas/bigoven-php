@@ -35,6 +35,6 @@ $bigOven = \BigOven\BigOvenClient::factory(array(
     'password' => 'my-password',
 ));
 
-$recipes = bigOven->findRecipesByTitle('cheese');
+$recipes = $bigOven->findRecipesByTitle('cheese');
 
 ```
