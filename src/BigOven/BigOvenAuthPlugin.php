@@ -49,7 +49,7 @@ class BigOvenAuthPlugin implements EventSubscriberInterface
      */
     public function onRequestBeforeSend(Event $event)
     {
-        $apiKey = $this->config->get('api_key');
+        $apiKey   = $this->config->get('api_key');
         $username = $this->config->get('username');
         $password = $this->config->get('password');
 
@@ -81,7 +81,7 @@ class BigOvenAuthPlugin implements EventSubscriberInterface
     public function addAuthorizationHeader(Request $request, $username, $password)
     {
         $encodedString = base64_encode($username . ':' . $password);
-        $headerValue =  'Basic ' . $encodedString;
+        $headerValue = 'Basic ' . $encodedString;
         $request->addHeader('Authorization', $headerValue);
         return $this;
     }

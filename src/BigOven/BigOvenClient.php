@@ -36,17 +36,17 @@ class BigOvenClient extends Client
     }
 
     /**
-     * @return \SimpleXMLElement
+     * @return \BigOven\Response\User
      *
      * @see http://api.bigoven.com/documentation/user-profile
      */
     public function getUserProfile()
     {
-        return $this
+        return new Response\User($this
             ->get('/profile')
             ->send()
             ->xml()
-        ;
+        );
     }
 
     /**
