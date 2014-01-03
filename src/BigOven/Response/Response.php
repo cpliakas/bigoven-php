@@ -2,12 +2,19 @@
 
 namespace BigOven\Response;
 
+use Guzzle\Http\Message\Request;
+
 class Response
 {
     const BOOLEAN = 'boolean';
     const DATE    = 'date';
     const INTEGER = 'integer';
     const STRING  = 'string';
+
+    /**
+     * @var \BigOven\BigOvenClient
+     */
+    protected $client;
 
     /**
      * @var \SimpleXMLElement
@@ -20,12 +27,20 @@ class Response
     protected $cache = array();
 
     /**
-     * @param \SimpleXMLElement $xml
+     * @param \Guzzle\Http\Message\Request $xml
      */
-    public function __construct(\SimpleXMLElement $xml)
+    public function __construct(Request $request)
     {
-        $this->xml = $xml;
-        $this->xml->registerXPathNamespace('xsi', 'http://www.w3.org/2001/XMLSchema-instance');
+        $this->client = $request->getClient();
+        $this->xml = $request->send()->xml();
+    }
+
+    /**
+     * @return \BigOven\BigOvenClient
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 
     /**

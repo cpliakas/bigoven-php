@@ -42,27 +42,21 @@ class BigOvenClient extends Client
      */
     public function getUserProfile()
     {
-        return new Response\User($this
-            ->get('/profile')
-            ->send()
-            ->xml()
-        );
+        $request = $this->get('/profile');
+        return new Response\User($request);
     }
 
     /**
      * @param int $recipeId
      *
-     * @return \SimpleXMLElement
+     * @return \BigOven\Response\Recipe
      *
      * @see http://api.bigoven.com/documentation/recipes
      */
     public function getRecipe($recipeId)
     {
-        return $this
-            ->get(array('/recipe/{id}', array('id' => $recipeId)))
-            ->send()
-            ->xml()
-        ;
+        $request = $this->get(array('/recipe/{id}', array('id' => $recipeId)));
+        return new Response\Recipe($request);
     }
 
     /**
@@ -145,10 +139,7 @@ class BigOvenClient extends Client
      */
     public function getGlossaryEntry($entryId)
     {
-        return new Response\GlossaryEntry($this
-            ->get(array('/glossary/{id}', array('id' => $entryId)))
-            ->send()
-            ->xml()
-        );
+        $request = $this->get(array('/glossary/{id}', array('id' => $entryId)));
+        return new Response\GlossaryEntry($request);
     }
 }
