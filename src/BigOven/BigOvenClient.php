@@ -139,16 +139,16 @@ class BigOvenClient extends Client
     /**
      * @param int $entryId
      *
-     * @return \SimpleXMLElement
+     * @return \BigOven\Response\GlossaryEntry
      *
      * @see http://api.bigoven.com/documentation/food-glossary
      */
     public function getGlossaryEntry($entryId)
     {
-        return $this
+        return new Response\GlossaryEntry($this
             ->get(array('/glossary/{id}', array('id' => $entryId)))
             ->send()
             ->xml()
-        ;
+        );
     }
 }
