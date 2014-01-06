@@ -69,14 +69,9 @@ class Response
             $element = reset($result);
 
             if ($element instanceof \SimpleXMLElement) {
-
                 $value = (string) $element;
-                if ($this->isNullable($element) && !strlen($value)) {
-                    $this->cache[$path] = null;
-                } else {
-                    $this->cache[$path] = $this->typeCastValue($value, $dataType);
-                }
-
+                $isNull = $this->isNullable($element) && !strlen($value);
+                $this->cache[$path] = $isNull ? null : $this->typeCastValue($value, $dataType);
             } else {
                 $this->cache[$path] = null;
             }
@@ -126,6 +121,45 @@ class Response
             default:
                 throw new \UnexpectedValueException('Data type not valid: ' . $dataType);
         }
+    }
+
+    /**
+     * @param string $path
+     * @param string $class
+     *
+     * @return \BigOven\Response\NestedResponse
+     *
+     * @throws \UnexpectedValueException
+     */
+    public function getNestedReponse($path, $class)
+    {
+        $result = $this->xml->xpath($path);
+        $xml = reset($result);
+        if (!$xml instanceof \SimpleXMLElement) {
+            throw new \UnexpectedValueException('No elements matched by xpath query: ' . $path);
+        }
+
+        $nestedResult = new $class($this->client, $xml);
+        if (!$nestedResult instanceof NestedResponse) {
+            throw new \UnexpectedValueException('Expecting class to be an instance of \BigOven\Response\NestedResponse');
+        }
+
+        return $nestedResult;
+    }
+
+    /**
+     * @param string $path
+     * @param string $class
+     *
+     * @return \BigOven\Response\NestedResponseIterator
+     *
+     * @throws \UnexpectedValueException
+     */
+    public function getNestedReponseIterator($path, $class)
+    {
+        $result = $this->xml->xpath($path);
+        $iterator = new \ArrayIterator($result);
+        return new NestedResponseIterator($iterator, $this->client, $class);
     }
 
     /**

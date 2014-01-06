@@ -9,7 +9,7 @@ class User extends Response
      */
     public function id()
     {
-        return $this->getElementValue('/User/UserID[1]', self::INTEGER);
+        return $this->getElementValue('/User/UserID', self::INTEGER);
     }
 
     /**
@@ -17,7 +17,7 @@ class User extends Response
      */
     public function imageUrl()
     {
-        return $this->getElementValue('/User/ImageURL[1]');
+        return $this->getElementValue('/User/ImageURL');
     }
 
     /**
@@ -25,7 +25,7 @@ class User extends Response
      */
     public function imageUrlSmall()
     {
-        return $this->getElementValue('/User/ImageURL48[1]');
+        return $this->getElementValue('/User/ImageURL48');
     }
 
     /**
@@ -33,7 +33,7 @@ class User extends Response
      */
     public function imageUrlMedium()
     {
-        return $this->getElementValue('/User/ImageURL64[1]');
+        return $this->getElementValue('/User/ImageURL64');
     }
 
     /**
@@ -41,7 +41,7 @@ class User extends Response
      */
     public function imageUrlLarge()
     {
-        return $this->getElementValue('/User/ImageURL128[1]');
+        return $this->getElementValue('/User/ImageURL128');
     }
 
     /**
@@ -49,7 +49,7 @@ class User extends Response
      */
     public function isPremium()
     {
-        return $this->getElementValue('/User/IsPremium[1]', self::BOOLEAN);
+        return $this->getElementValue('/User/IsPremium', self::BOOLEAN);
     }
 
     /**
@@ -57,7 +57,7 @@ class User extends Response
      */
     public function creditBalance()
     {
-        return $this->getElementValue('/User/CreditBalance[1]', self::INTEGER);
+        return $this->getElementValue('/User/CreditBalance', self::INTEGER);
     }
 
     /**
@@ -65,7 +65,7 @@ class User extends Response
      */
     public function fullName()
     {
-        return $this->getElementValue('/User/FullName[1]');
+        return $this->getElementValue('/User/FullName');
     }
 
     /**
@@ -73,7 +73,7 @@ class User extends Response
      */
     public function memberSince()
     {
-        return $this->getElementValue('/User/MemberSince[1]', self::DATE);
+        return $this->getElementValue('/User/MemberSince', self::DATE);
     }
 
     /**
@@ -81,7 +81,7 @@ class User extends Response
      */
     public function aboutMe()
     {
-        return $this->getElementValue('/User/AboutMe[1]');
+        return $this->getElementValue('/User/AboutMe');
     }
 
     /**
@@ -89,7 +89,7 @@ class User extends Response
      */
     public function trySoonCount()
     {
-        return $this->getElementValue('/User/TrySoonCount[1]', self::INTEGER);
+        return $this->getElementValue('/User/TrySoonCount', self::INTEGER);
     }
 
     /**
@@ -97,7 +97,7 @@ class User extends Response
      */
     public function favoritesCount()
     {
-        return $this->getElementValue('/User/FavoritesCount[1]', self::INTEGER);
+        return $this->getElementValue('/User/FavoritesCount', self::INTEGER);
     }
 
     /**
@@ -105,7 +105,7 @@ class User extends Response
      */
     public function addedCount()
     {
-        return $this->getElementValue('/User/AddedCount[1]', self::INTEGER);
+        return $this->getElementValue('/User/AddedCount', self::INTEGER);
     }
 
     /**
@@ -113,7 +113,7 @@ class User extends Response
      */
     public function menusCount()
     {
-        return $this->getElementValue('/User/MenusCount[1]', self::INTEGER);
+        return $this->getElementValue('/User/MenusCount', self::INTEGER);
     }
 
     /**
@@ -121,7 +121,7 @@ class User extends Response
      */
     public function premiumExpiryDate()
     {
-        return $this->getElementValue('/User/PremiumExpiryDate[1]', self::DATE);
+        return $this->getElementValue('/User/PremiumExpiryDate', self::DATE);
     }
 
     /**
@@ -129,7 +129,7 @@ class User extends Response
      */
     public function isGroceryListFree()
     {
-        return $this->getElementValue('/User/IsGroceryListFree[1]', self::BOOLEAN);
+        return $this->getElementValue('/User/IsGroceryListFree', self::BOOLEAN);
     }
 
     /**
@@ -137,7 +137,7 @@ class User extends Response
      */
     public function isMenuPlanFree()
     {
-        return $this->getElementValue('/User/IsMenuPlanFree[1]', self::BOOLEAN);
+        return $this->getElementValue('/User/IsMenuPlanFree', self::BOOLEAN);
     }
 
     /**
@@ -145,7 +145,7 @@ class User extends Response
      */
     public function groceryListSponsor()
     {
-        return $this->getElementValue('/User/GroceryListSponsor[1]', self::STRING);
+        return $this->getElementValue('/User/GroceryListSponsor', self::STRING);
     }
 
     /**
@@ -153,7 +153,7 @@ class User extends Response
      */
     public function menuPlanSponsor()
     {
-        return $this->getElementValue('/User/MenuPlanSponsor[1]', self::STRING);
+        return $this->getElementValue('/User/MenuPlanSponsor', self::STRING);
     }
 
     /**
@@ -161,7 +161,7 @@ class User extends Response
      */
     public function adFreeEnabled()
     {
-        return $this->getElementValue('/User/AdFreeEnabled[1]', self::BOOLEAN);
+        return $this->getElementValue('/User/AdFreeEnabled', self::BOOLEAN);
     }
 
     /**
@@ -169,7 +169,7 @@ class User extends Response
      */
     public function powerFeaturesEnabled()
     {
-        return $this->getElementValue('/User/PowerFeaturesEnabled[1]', self::BOOLEAN);
+        return $this->getElementValue('/User/PowerFeaturesEnabled', self::BOOLEAN);
     }
 
     /**
@@ -177,6 +177,6 @@ class User extends Response
      */
     public function isCurator()
     {
-        return $this->getElementValue('/User/IsCurator[1]', self::BOOLEAN);
+        return $this->getElementValue('/User/IsCurator', self::BOOLEAN);
     }
 }

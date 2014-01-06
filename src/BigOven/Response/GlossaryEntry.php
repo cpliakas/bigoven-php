@@ -9,7 +9,7 @@ class GlossaryEntry extends Response
      */
     public function id()
     {
-        return $this->getElementValue('/GlossaryEntry/GlossaryEntryID[1]', self::INTEGER);
+        return $this->getElementValue('/GlossaryEntry/GlossaryEntryID', self::INTEGER);
     }
 
     /**
@@ -17,7 +17,7 @@ class GlossaryEntry extends Response
      */
     public function term()
     {
-        return $this->getElementValue('/GlossaryEntry/Term[1]');
+        return $this->getElementValue('/GlossaryEntry/Term');
     }
 
     /**
@@ -25,7 +25,7 @@ class GlossaryEntry extends Response
      */
     public function definition()
     {
-        return $this->getElementValue('/GlossaryEntry/Definition[1]');
+        return $this->getElementValue('/GlossaryEntry/Definition');
     }
 
     /**
@@ -33,7 +33,7 @@ class GlossaryEntry extends Response
      */
     public function creationDate()
     {
-        return $this->getElementValue('/GlossaryEntry/CreationDate[1]', self::DATE);
+        return $this->getElementValue('/GlossaryEntry/CreationDate', self::DATE);
     }
 
     /**
@@ -41,6 +41,6 @@ class GlossaryEntry extends Response
      */
     public function lastModified()
     {
-        return $this->getElementValue('/GlossaryEntry/LastModified[1]', self::DATE);
+        return $this->getElementValue('/GlossaryEntry/LastModified', self::DATE);
     }
 }

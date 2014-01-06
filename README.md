@@ -29,12 +29,27 @@ for more detailed installation and usage instructions.
 
 require 'vendor/autoload.php';
 
+// Instantiate the client class that consumes the API.
 $bigOven = \BigOven\BigOvenClient::factory(array(
     'api_key'  => 'my-api-key',
     'username' => 'my-username',
     'password' => 'my-password',
 ));
 
+// Get a recipe by ID and display the title.
+$recipe = $bigOven->getRecipe('12345');
+echo $recipe->title() . PHP_EOL;
+
+// List the ingredients.
+echo 'Ingredients: ' . PHP_EOL;
+foreach ($recipe as $ingredient) {
+  echo $ingredient->name() . PHP_EOL;
+}
+
+// Show the user who posted the recipe.
+echo 'Posted by: ' . $recipe->poster()->userName() . PHP_EOL;
+
+// Get a list of recipes that have "cheese" in the title.
 $recipes = $bigOven->findRecipesByTitle('cheese');
 
 ```

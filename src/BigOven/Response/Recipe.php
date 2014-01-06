@@ -2,14 +2,22 @@
 
 namespace BigOven\Response;
 
-class Recipe extends Response
+class Recipe extends Response implements \IteratorAggregate
 {
+    /**
+     * @return \BigOven\Response\NestedResponseIterator
+     */
+    public function getIterator()
+    {
+        return $this->ingredients();
+    }
+
     /**
      * @return int
      */
     public function id()
     {
-        return $this->getElementValue('/Recipe/RecipeID[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/RecipeID', self::INTEGER);
     }
 
     /**
@@ -17,7 +25,7 @@ class Recipe extends Response
      */
     public function title()
     {
-        return $this->getElementValue('/Recipe/Title[1]');
+        return $this->getElementValue('/Recipe/Title');
     }
 
     /**
@@ -25,7 +33,7 @@ class Recipe extends Response
      */
     public function description()
     {
-        return $this->getElementValue('/Recipe/Description[1]');
+        return $this->getElementValue('/Recipe/Description');
     }
 
     /**
@@ -33,7 +41,7 @@ class Recipe extends Response
      */
     public function category()
     {
-        return $this->getElementValue('/Recipe/Category[1]');
+        return $this->getElementValue('/Recipe/Category');
     }
 
     /**
@@ -41,7 +49,7 @@ class Recipe extends Response
      */
     public function subCategory()
     {
-        return $this->getElementValue('/Recipe/Subcategory[1]');
+        return $this->getElementValue('/Recipe/Subcategory');
     }
 
     /**
@@ -49,7 +57,7 @@ class Recipe extends Response
      */
     public function primaryIngredient()
     {
-        return $this->getElementValue('/Recipe/PrimaryIngredient[1]');
+        return $this->getElementValue('/Recipe/PrimaryIngredient');
     }
 
     /**
@@ -57,7 +65,7 @@ class Recipe extends Response
      */
     public function starRating()
     {
-        return $this->getElementValue('/Recipe/StarRating[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/StarRating', self::INTEGER);
     }
 
     /**
@@ -65,7 +73,7 @@ class Recipe extends Response
      */
     public function webUrl()
     {
-        return $this->getElementValue('/Recipe/WebURL[1]');
+        return $this->getElementValue('/Recipe/WebURL');
     }
 
     /**
@@ -73,7 +81,7 @@ class Recipe extends Response
      */
     public function reviewCount()
     {
-        return $this->getElementValue('/Recipe/ReviewCount[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/ReviewCount', self::INTEGER);
     }
 
     /**
@@ -81,7 +89,7 @@ class Recipe extends Response
      */
     public function medalCount()
     {
-        return $this->getElementValue('/Recipe/MedalCount[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/MedalCount', self::INTEGER);
     }
 
     /**
@@ -89,15 +97,17 @@ class Recipe extends Response
      */
     public function favoriteCount()
     {
-        return $this->getElementValue('/Recipe/FavoriteCount[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/FavoriteCount', self::INTEGER);
     }
 
     /**
      * @return \BigOven\Response\Poster
+     *
+     * @throws \UnexpectedValueException
      */
     public function poster()
     {
-        return new Poster($this->client, $this->xml, '/Recipe');
+        return $this->getNestedReponse('/Recipe/Poster', '\BigOven\Response\Poster');
     }
 
     /**
@@ -105,7 +115,7 @@ class Recipe extends Response
      */
     public function instructions()
     {
-        return $this->getElementValue('/Recipe/Instructions[1]');
+        return $this->getElementValue('/Recipe/Instructions');
     }
 
     /**
@@ -113,7 +123,7 @@ class Recipe extends Response
      */
     public function yieldNumber()
     {
-        return $this->getElementValue('/Recipe/YieldNumber[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/YieldNumber', self::INTEGER);
     }
 
     /**
@@ -121,7 +131,7 @@ class Recipe extends Response
      */
     public function yieldUnit()
     {
-        return $this->getElementValue('/Recipe/YieldUnit[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/YieldUnit', self::INTEGER);
     }
 
     /**
@@ -129,7 +139,7 @@ class Recipe extends Response
      */
     public function totalMinutes()
     {
-        return $this->getElementValue('/Recipe/TotalMinutes[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/TotalMinutes', self::INTEGER);
     }
 
     /**
@@ -137,7 +147,7 @@ class Recipe extends Response
      */
     public function activeMinutes()
     {
-        return $this->getElementValue('/Recipe/ActiveMinutes[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/ActiveMinutes', self::INTEGER);
     }
 
     /**
@@ -145,7 +155,7 @@ class Recipe extends Response
      */
     public function isPrivate()
     {
-        return $this->getElementValue('/Recipe/IsPrivate[1]', self::BOOLEAN);
+        return $this->getElementValue('/Recipe/IsPrivate', self::BOOLEAN);
     }
 
     /**
@@ -153,7 +163,7 @@ class Recipe extends Response
      */
     public function creationDate()
     {
-        return $this->getElementValue('/Recipe/CreationDate[1]', self::DATE);
+        return $this->getElementValue('/Recipe/CreationDate', self::DATE);
     }
 
     /**
@@ -161,7 +171,7 @@ class Recipe extends Response
      */
     public function lastModified()
     {
-        return $this->getElementValue('/Recipe/LastModified[1]', self::DATE);
+        return $this->getElementValue('/Recipe/LastModified', self::DATE);
     }
 
     /**
@@ -169,7 +179,7 @@ class Recipe extends Response
      */
     public function isBookmark()
     {
-        return $this->getElementValue('/Recipe/IsBookmark[1]', self::BOOLEAN);
+        return $this->getElementValue('/Recipe/IsBookmark', self::BOOLEAN);
     }
 
     /**
@@ -177,7 +187,7 @@ class Recipe extends Response
      */
     public function bookmarkUrl()
     {
-        return $this->getElementValue('/Recipe/BookmarkURL[1]');
+        return $this->getElementValue('/Recipe/BookmarkURL');
     }
 
     /**
@@ -185,7 +195,7 @@ class Recipe extends Response
      */
     public function bookmarkSiteLogo()
     {
-        return $this->getElementValue('/Recipe/BookmarkSiteLogo[1]');
+        return $this->getElementValue('/Recipe/BookmarkSiteLogo');
     }
 
     /**
@@ -193,7 +203,7 @@ class Recipe extends Response
      */
     public function bookmarkImageURL()
     {
-        return $this->getElementValue('/Recipe/BookmarkImageURL[1]');
+        return $this->getElementValue('/Recipe/BookmarkImageURL');
     }
 
     /**
@@ -201,7 +211,7 @@ class Recipe extends Response
      */
     public function isRecipeScan()
     {
-        return $this->getElementValue('/Recipe/IsRecipeScan[1]');
+        return $this->getElementValue('/Recipe/IsRecipeScan');
     }
 
     /**
@@ -209,7 +219,7 @@ class Recipe extends Response
      */
     public function menuCount()
     {
-        return $this->getElementValue('/Recipe/MenuCount[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/MenuCount', self::INTEGER);
     }
 
     /**
@@ -217,7 +227,7 @@ class Recipe extends Response
      */
     public function notesCount()
     {
-        return $this->getElementValue('/Recipe/NotesCount[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NotesCount', self::INTEGER);
     }
 
     /**
@@ -225,7 +235,7 @@ class Recipe extends Response
      */
     public function isSponsored()
     {
-        return $this->getElementValue('/Recipe/IsSponsored[1]', self::BOOLEAN);
+        return $this->getElementValue('/Recipe/IsSponsored', self::BOOLEAN);
     }
 
     /**
@@ -233,7 +243,18 @@ class Recipe extends Response
      */
     public function variantOfRecipeID()
     {
-        return $this->getElementValue('/Recipe/VariantOfRecipeID[1]');
+        return $this->getElementValue('/Recipe/VariantOfRecipeID');
+    }
+
+    /**
+     * @return \BigOven\Response\NestedResponseIterator
+     */
+    public function ingredients()
+    {
+        return $this->getNestedReponseIterator(
+            '/Recipe/Ingredients/Ingredient',
+            '\BigOven\Response\Ingredient'
+        );
     }
 
     /** NUTRUTION INFO **/
@@ -243,7 +264,7 @@ class Recipe extends Response
      */
     public function singularYieldUnit()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/SingularYieldUnit[1]');
+        return $this->getElementValue('/Recipe/NutritionInfo/SingularYieldUnit');
     }
 
     /**
@@ -251,7 +272,7 @@ class Recipe extends Response
      */
     public function totalCalories()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/TotalCalories[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/TotalCalories', self::INTEGER);
     }
 
     /**
@@ -259,7 +280,7 @@ class Recipe extends Response
      */
     public function totalFat()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/TotalFat[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/TotalFat', self::INTEGER);
     }
 
     /**
@@ -267,7 +288,7 @@ class Recipe extends Response
      */
     public function caloriesFromFat()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/CaloriesFromFat[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/CaloriesFromFat', self::INTEGER);
     }
 
     /**
@@ -275,7 +296,7 @@ class Recipe extends Response
      */
     public function totalFatPct()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/TotalFatPct[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/TotalFatPct', self::INTEGER);
     }
 
     /**
@@ -283,7 +304,7 @@ class Recipe extends Response
      */
     public function satFat()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/SatFat[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/SatFat', self::INTEGER);
     }
 
     /**
@@ -291,7 +312,7 @@ class Recipe extends Response
      */
     public function satFatPct()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/SatFatPct[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/SatFatPct', self::INTEGER);
     }
 
     /**
@@ -299,7 +320,7 @@ class Recipe extends Response
      */
     public function monoFat()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/MonoFat[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/MonoFat', self::INTEGER);
     }
 
     /**
@@ -307,7 +328,7 @@ class Recipe extends Response
      */
     public function polyFat()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/PolyFat[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/PolyFat', self::INTEGER);
     }
 
     /**
@@ -315,7 +336,7 @@ class Recipe extends Response
      */
     public function transFat()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/TransFat[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/TransFat', self::INTEGER);
     }
 
     /**
@@ -323,7 +344,7 @@ class Recipe extends Response
      */
     public function cholesterol()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/Cholesterol[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/Cholesterol', self::INTEGER);
     }
 
     /**
@@ -331,7 +352,7 @@ class Recipe extends Response
      */
     public function cholesterolPct()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/CholesterolPct[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/CholesterolPct', self::INTEGER);
     }
 
     /**
@@ -339,7 +360,7 @@ class Recipe extends Response
      */
     public function sodium()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/Sodium[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/Sodium', self::INTEGER);
     }
 
     /**
@@ -347,7 +368,7 @@ class Recipe extends Response
      */
     public function sodiumPct()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/SodiumPct[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/SodiumPct', self::INTEGER);
     }
 
     /**
@@ -355,7 +376,7 @@ class Recipe extends Response
      */
     public function potassium()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/Potassium[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/Potassium', self::INTEGER);
     }
 
     /**
@@ -363,7 +384,7 @@ class Recipe extends Response
      */
     public function potassiumPct()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/PotassiumPct[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/PotassiumPct', self::INTEGER);
     }
 
     /**
@@ -371,7 +392,7 @@ class Recipe extends Response
      */
     public function totalCarbs()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/TotalCarbs[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/TotalCarbs', self::INTEGER);
     }
 
     /**
@@ -379,7 +400,7 @@ class Recipe extends Response
      */
     public function totalCarbsPct()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/TotalCarbsPct[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/TotalCarbsPct', self::INTEGER);
     }
 
     /**
@@ -387,7 +408,7 @@ class Recipe extends Response
      */
     public function dietaryFiber()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/DietaryFiber[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/DietaryFiber', self::INTEGER);
     }
 
     /**
@@ -395,7 +416,7 @@ class Recipe extends Response
      */
     public function dietaryFiberPct()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/DietaryFiberPct[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/DietaryFiberPct', self::INTEGER);
     }
 
     /**
@@ -403,7 +424,7 @@ class Recipe extends Response
      */
     public function sugar()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/Sugar[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/Sugar', self::INTEGER);
     }
 
     /**
@@ -411,7 +432,7 @@ class Recipe extends Response
      */
     public function protein()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/Protein[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/Protein', self::INTEGER);
     }
 
     /**
@@ -419,6 +440,6 @@ class Recipe extends Response
      */
     public function proteinPct()
     {
-        return $this->getElementValue('/Recipe/NutritionInfo/ProteinPct[1]', self::INTEGER);
+        return $this->getElementValue('/Recipe/NutritionInfo/ProteinPct', self::INTEGER);
     }
 }
