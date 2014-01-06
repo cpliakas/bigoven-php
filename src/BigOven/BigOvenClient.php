@@ -10,7 +10,11 @@ class BigOvenClient extends Client
     const BASE_URL = 'http://api.bigoven.com';
 
     /**
-     * {@inheritdoc}
+     * @param array $config
+     *     - base_url
+     *     - api_key
+     *     - username
+     *     - password
      *
      * @return \BigOven\BigOvenClient
      */
@@ -82,7 +86,7 @@ class BigOvenClient extends Client
      *
      * @see http://api.bigoven.com/documentation/recipe-search-results
      *
-     * @return \SimpleXMLElement
+     * @return \BigOven\Response\RecipeSearchResults
      */
     public function findRecipesByTitle($title, array $options = array())
     {
@@ -91,12 +95,8 @@ class BigOvenClient extends Client
             'pg'       => 1,
             'rpp'      => 10,
         );
-
-        return $this
-            ->get('/recipes', array(), array('query' => $query))
-            ->send()
-            ->xml()
-        ;
+        $request = $this->get('/recipes', array(), array('query' => $query));
+        return new Response\RecipeSearchResults($request);
     }
 
     /**
@@ -108,7 +108,7 @@ class BigOvenClient extends Client
      *
      * @see http://api.bigoven.com/documentation/recipe-search-results
      *
-     * @return \SimpleXMLElement
+     * @return \BigOven\Response\RecipeSearchResults
      */
     public function findRecipesByKeyword($keyword, array $options = array())
     {
@@ -117,12 +117,8 @@ class BigOvenClient extends Client
             'pg'       => 1,
             'rpp'      => 10,
         );
-
-        return $this
-            ->get('/recipes', array(), array('query' => $query))
-            ->send()
-            ->xml()
-        ;
+        $request = $this->get('/recipes', array(), array('query' => $query));
+        return new Response\RecipeSearchResults($request);
     }
 
     /**

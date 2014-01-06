@@ -8,6 +8,7 @@ class Response
 {
     const BOOLEAN = 'boolean';
     const DATE    = 'date';
+    const FLOAT   = 'float';
     const INTEGER = 'integer';
     const STRING  = 'string';
 
@@ -111,6 +112,9 @@ class Response
 
             case self::DATE;
                 return new \DateTime($value);
+
+            case self::FLOAT;
+                return (float) $value;
 
             case self::INTEGER:
                 return (int) $value;

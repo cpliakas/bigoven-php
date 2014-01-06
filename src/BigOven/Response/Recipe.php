@@ -61,11 +61,11 @@ class Recipe extends Response implements \IteratorAggregate
     }
 
     /**
-     * @return int
+     * @return float
      */
     public function starRating()
     {
-        return $this->getElementValue('/Recipe/StarRating', self::INTEGER);
+        return $this->getElementValue('/Recipe/StarRating', self::FLOAT);
     }
 
     /**
