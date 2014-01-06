@@ -62,20 +62,15 @@ class BigOvenClient extends Client
     /**
      * @param int $recipeId
      *
-     * @return \SimpleXMLElement
+     * @return \BigOven\Response\RecipeImages
      *
      * @see http://api.bigoven.com/documentation/recipe-images
      */
     public function getRecipeImages($recipeId)
     {
-        $query = array(
-            'rid' => $recipeId
-        );
-
-        return $this
-            ->get('/images', array(), array('query' => $query))
-            ->send()
-            ->xml();
+        $query = array('rid' => $recipeId);
+        $request = $this->get('/images', array(), array('query' => $query));
+        return new Response\RecipeImages($request);
     }
 
     /**
