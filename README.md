@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/cpliakas/bigoven-php/badge.png?branch=master)](https://coveralls.io/r/cpliakas/bigoven-php?branch=master)
 [![Total Downloads](https://poser.pugx.org/cpliakas/bigoven-php/downloads.png)](https://packagist.org/packages/cpliakas/bigoven-php)
 [![Latest Stable Version](https://poser.pugx.org/cpliakas/bigoven-php/v/stable.png)](https://packagist.org/packages/cpliakas/bigoven-php)
+[![API Testing](https://img.shields.io/badge/API%20Test-RapidAPI-blue.svg)](https://rapidapi.com/package/BigOven/functions?utm_source=BigOvenGithub&utm_medium=button&utm_content=Vender_GitHub)
 
 A PHP client library for the [BigOven](http://www.bigoven.com/) API.
 
